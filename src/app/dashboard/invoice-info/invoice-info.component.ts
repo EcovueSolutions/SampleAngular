@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SetupserviceService } from 'src/app/setupservice.service';
 
 @Component({
   selector: 'app-invoice-info',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoiceInfoComponent implements OnInit {
 
-  constructor() { }
+  public dataTest :any
 
-  ngOnInit(): void {
+  constructor(private _setUpService: SetupserviceService) { }
+
+  ngOnInit() {
+
+   this._setUpService.getContext()
+   .subscribe(data => this.dataTest = data.items);
+   console.log(this.dataTest);
+
   }
 
 }
